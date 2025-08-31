@@ -33,5 +33,6 @@ management:
 info:
   app:
     name: ${spring.application.name}
-    description: Vet-Connect ${spring.application.name} Management Service
+    description: Vet-Connect ${spring.application.name} Management Service updated from git
+
     version: 1.0.0
