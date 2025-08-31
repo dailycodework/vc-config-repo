@@ -25,7 +25,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: busrefresh, health, info, refresh
   info:
     env:
       enabled: true
@@ -36,3 +36,4 @@ info:
     description: Vet-Connect ${spring.application.name} Management Service updated from git
 
     version: 1.0.0
+
