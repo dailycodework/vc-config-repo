@@ -33,8 +33,9 @@ management:
 info:
   app:
     name: ${spring.application.name}
-    description: Vet-Connect ${spring.application.name} Management Service updated from git hub 2
+    description: Vet-Connect ${spring.application.name} Management Service updated from git with cloud bus
 
     version: 1.0.0
+
 
 
