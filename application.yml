@@ -33,9 +33,10 @@ management:
 info:
   app:
     name: ${spring.application.name}
-    description: Vet-Connect ${spring.application.name} Management Service updated with cloud bus
+    description: Vet-Connect ${spring.application.name} Management Service updated with Spring Cloud Bus with monitor dependency
 
     version: 1.0.0
+
 
 
 
