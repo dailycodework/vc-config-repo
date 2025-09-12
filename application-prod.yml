@@ -1,0 +1,36 @@
+## production base yml file for all services in the config service
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: ${HOSTNAME}
+    instance-id: ${spring.application.name}:${server.port}
+
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: kafka:9092
+      default:
+        contentType: application/json
+        group: ${spring.application.name}-group
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: ${spring.application.name}
+    description: Vet-Connect ${spring.application.name} Management Service Running in Production
+    version: 1.0.0

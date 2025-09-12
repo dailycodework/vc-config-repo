@@ -1,0 +1,34 @@
+## local user microservice yml file
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3308/user_db
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      format-sql: true
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+  cloud:
+    function:
+      definition: processUserDeletion
+    stream:
+      bindings:
+        userRegistered-out-0:
+          destination: create-user-complete
+        processUserDeletion-in-0:
+          destination: delete-user-request
+        processUserDeletion-out-0:
+          destination: delete-user-complete
+
+
+app:
+  cache:
+    resource-type: users

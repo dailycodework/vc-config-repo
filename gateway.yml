@@ -1,0 +1,56 @@
+## The gateway server yml file
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cloud:
+    gateway:
+      cache:
+        ttl-seconds: 300
+        max-body-bytes: 524288
+        cache-header-whitelist:
+          - Accept-Encoding
+          - Accept
+        enabled: true
+      server:
+        webflux:
+          default-filters:
+            - AddRequestHeader=X-Auth-Source, Gateway
+            - name: RequestRateLimiter
+              args:
+                  key-resolver: "#{@ipKeyResolver}"
+                  redis-rate-limiter.replenishRate: 10
+                  redis-rate-limiter.burstCapacity: 20
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY, SERVICE_UNAVAILABLE, GATEWAY_TIMEOUT
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowedOrigins: "*"
+                allowedMethods: "*"
+                allowedHeaders: "*"
+
+          discovery:
+             locator:
+               lower-case-service-id: true
+               enabled: true
+
+    function:
+      definition: invalidateUserCachedData
+    stream:
+      bindings:
+        invalidateUserCachedData-in-0:
+          destination: delete-user-complete
+
+## Actuator related configurations
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      access: unrestricted
