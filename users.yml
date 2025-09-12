@@ -28,3 +28,9 @@ spring:
           destination: delete-user-complete
 
 
+app:
+  cache:
+    resource-type: users
+
+
+
