@@ -4,10 +4,10 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://discovery:8761/eureka/
   instance:
     prefer-ip-address: true
-    hostname: localhost
+    hostname: ${HOSTNAME}
     instance-id: ${spring.application.name}:${server.port}
 
 
@@ -16,7 +16,7 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: localhost:29092
+          brokers: kafka:9092
       default:
         contentType: application/json
         group: ${spring.application.name}-group
@@ -33,6 +33,7 @@ management:
 info:
   app:
     name: ${spring.application.name}
-    description: Vet-Connect ${spring.application.name} Management Service Running in Local
+    description: Vet-Connect ${spring.application.name} Management Service Running in prod from git
 
     version: 1.0.0
+
