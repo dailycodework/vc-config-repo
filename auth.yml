@@ -15,7 +15,11 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-      format-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
 
 jwt:
   secret: ${JWT_SECRET}
+
