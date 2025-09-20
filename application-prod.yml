@@ -4,7 +4,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://discovery:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
   instance:
     prefer-ip-address: true
     hostname: localhost
@@ -35,4 +35,5 @@ info:
     description: Vet-Connect ${spring.application.name} Management Service Running in Production from git
 
     version: 1.0.0
+
 
