@@ -15,7 +15,7 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: kafka:90922
+          brokers: kafka:9092
       default:
         contentType: application/json
         group: ${spring.application.name}-group
@@ -35,6 +35,7 @@ info:
     description: Vet-Connect ${spring.application.name} Management Service Running in Production from git
 
     version: 1.0.0
+
 
 
 
